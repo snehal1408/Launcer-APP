@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Launcher</string>
+    <string name="home_screen">Home Screen</string>
+    <string name="installed_apps">All Application</string>
+    <string name="api_data">Fetched API Data</string>
+</resources>

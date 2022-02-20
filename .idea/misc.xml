@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Snehal Mangukiya/AndroidStudioProjects/Launcher/app/src/main/res/drawable-v24/ic_baseline_battery_0_bar_24.xml" value="0.1945" />
+        <entry key="..\:/Users/Snehal Mangukiya/AndroidStudioProjects/Launcher/app/src/main/res/drawable/ic_baseline_battery_0_bar_24.xml" value="0.1945" />
+        <entry key="..\:/Users/Snehal Mangukiya/AndroidStudioProjects/Launcher/app/src/main/res/drawable/ic_baseline_battery_1_bar_24.xml" value="0.1945" />
+        <entry key="..\:/Users/Snehal Mangukiya/AndroidStudioProjects/Launcher/app/src/main/res/layout/api_data.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/Snehal Mangukiya/AndroidStudioProjects/Launcher/app/src/main/res/layout/home_screen.xml" value="0.1" />
+        <entry key="..\:/Users/Snehal Mangukiya/AndroidStudioProjects/Launcher/app/src/main/res/layout/installed_app_list.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/Snehal Mangukiya/AndroidStudioProjects/Launcher/app/src/main/res/layout/list_apps.xml" value="0.16983695652173914" />
+        <entry key="..\:/Users/Snehal Mangukiya/AndroidStudioProjects/Launcher/app/src/main/res/layout/recyclerview_row.xml" value="0.16983695652173914" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
