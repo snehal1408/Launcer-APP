@@ -27,14 +27,12 @@
             android:name=".APIData"
             android:label="@string/api_data">
         </activity>
-<!--        <receiver android:name=".BatteryReceiver"-->
-<!--            android:exported="false">-->
-
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.BATTERY_CHANGED"/>-->
-<!--            </intent-filter>-->
-
-<!--        </receiver>-->
+        <receiver android:name=".BatteryReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

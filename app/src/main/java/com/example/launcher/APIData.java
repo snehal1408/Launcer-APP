@@ -29,11 +29,12 @@ public class APIData extends AppCompatActivity {
     ArrayList<RecyclerViewData> data = new ArrayList<>();
     ProgressBar loadingPB;
     String city_name, country_name, temperature_Celsius, description_detail;
+    String url;
 
     // Array of URLs of APIs to be parsed
     String[] links = new String[]{"http://weather.bfsah.com/beijing", "http://weather.bfsah.com/berlin",
             "http://weather.bfsah.com/cardiff", "http://weather.bfsah.com/edinburgh",
-            "http://weather.bfsah.com/london"};
+            "http://weather.bfsah.com/london", "http://weather.bfsah.com/nottingham"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +56,8 @@ public class APIData extends AppCompatActivity {
         // calling our data,"null" as we are not passing any data.
         // later on we are calling response listener method
         // to get the response from all APIs.
-        for (int i = 0; i < links.length; i++) {
-            String url = links[i];
+        for ( int i = 0; i < links.length; i++) {
+            url = links[i];
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
@@ -95,7 +96,7 @@ public class APIData extends AppCompatActivity {
                     }
                     // Try and catch are included to handle any errors due to JSON
                     catch (JSONException e) {
-                        // If an error occurs, this prints the error to the log
+                        // If an error occurs, this prints the error to the log and as toast msg
                         e.printStackTrace();
                     }
                 }
@@ -109,14 +110,13 @@ public class APIData extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     // below line is use to display a toast message along with our error.
-                    Toast.makeText(APIData.this, "Fail to get data..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(APIData.this, "Fail to get data from " + url , Toast.LENGTH_LONG).show();
                 }
             });
             // at last we are adding our json
             // object request to our request
             // queue to fetch all the json data.
             queue.add(jsonObjectRequest);
-            //System.out.println(city_name);
 
         }
     }
