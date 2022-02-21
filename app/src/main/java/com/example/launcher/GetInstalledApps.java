@@ -53,7 +53,7 @@ public class GetInstalledApps extends AppCompatActivity {
 
                                 // The 'which' argument contains the index position of the selected item
                                     String pkg = installedApps.get(i).packages;
-                                    if (which == 0 && !pkg.equals("com.example.launcher")) {
+                                    if (which == 0 && ApplicationInfo.FLAG_SYSTEM == 1 && ApplicationInfo.FLAG_UPDATED_SYSTEM_APP == 1) {
                                         Intent intent = getPackageManager().getLaunchIntentForPackage(installedApps.get(i).packages);
                                         if (intent != null) {
                                             startActivity(intent);
