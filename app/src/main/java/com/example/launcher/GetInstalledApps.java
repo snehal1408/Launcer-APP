@@ -52,35 +52,31 @@ public class GetInstalledApps extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 // The 'which' argument contains the index position of the selected item
-                                    String pkg = installedApps.get(i).packages;
-                                    if (which == 0 && ApplicationInfo.FLAG_SYSTEM == 1 && ApplicationInfo.FLAG_UPDATED_SYSTEM_APP == 1) {
+                                String pkg = installedApps.get(i).packages;
+                                if (which == 0) {
+                                    if (pkg.equals("com.example.launcher") || pkg.equals("com.example.launcherapplication")) {
+                                        Intent intent1 = new Intent(GetInstalledApps.this, APIData.class);
+                                        startActivity(intent1);
+                                    } else {
                                         Intent intent = getPackageManager().getLaunchIntentForPackage(installedApps.get(i).packages);
                                         if (intent != null) {
                                             startActivity(intent);
                                         } else {
                                             Toast.makeText(GetInstalledApps.this, installedApps.get(i).packages + " Error, Please Try Again...", Toast.LENGTH_SHORT).show();
                                         }
-                                    }else {
-                                        Intent intent = getPackageManager().getLaunchIntentForPackage(installedApps.get(i).packages);
-                                        if (intent != null) {
-                                            Intent intent1 = new Intent(GetInstalledApps.this, APIData.class);
-                                            startActivity(intent1);
-                                        } else {
-                                            Toast.makeText(GetInstalledApps.this, installedApps.get(i).packages + " Error, Please Try Again...", Toast.LENGTH_SHORT).show();
-                                        }
                                     }
+                                }
 
-                                    if (which == 1) {
-                                        Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                        intent.setData(Uri.parse("package:" + installedApps.get(i).packages));
-                                        Toast.makeText(GetInstalledApps.this, installedApps.get(i).packages, Toast.LENGTH_SHORT).show();
-                                        startActivity(intent);
-                                    }
+                                if (which == 1) {
+                                    Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    intent.setData(Uri.parse("package:" + installedApps.get(i).packages));
+                                    Toast.makeText(GetInstalledApps.this, installedApps.get(i).packages, Toast.LENGTH_SHORT).show();
+                                    startActivity(intent);
+                                }
 
-                        }
-            });
+                            }
+                        });
                 builder.show();
-
             }
         });
 
