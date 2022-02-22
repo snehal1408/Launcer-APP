@@ -18,19 +18,18 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 
 public class APIDataActivity extends AppCompatActivity {
 
+    private final ArrayList<RecyclerViewData> data = new ArrayList<>();
     // Array of URLs of APIs to be parsed
     String[] links = new String[]{"http://weather.bfsah.com/beijing", "http://weather.bfsah.com/berlin",
             "http://weather.bfsah.com/cardiff", "http://weather.bfsah.com/edinburgh",
             "http://weather.bfsah.com/london", "http://weather.bfsah.com/nottingham"};
     private RecyclerView recyclerView;
-    private ArrayList<RecyclerViewData> data = new ArrayList<>();
     private ProgressBar loadingPB;
     private String city_name, country_name, temperature_Celsius, description_detail;
     private String url;
@@ -55,56 +54,52 @@ public class APIDataActivity extends AppCompatActivity {
         // calling our data,"null" as we are not passing any data.
         // later on we are calling response listener method
         // to get the response from all APIs.
-        for (int i = 0; i < links.length; i++) {
-            url = links[i];
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    //For hiding our progress bar.
-                    loadingPB.setVisibility(View.GONE);
+        for (String link : links) {
+            url = link;
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+                //For hiding our progress bar.
+                loadingPB.setVisibility(View.GONE);
 
-                    // Recyclerview is visible after getting all the data.
-                    recyclerView.setVisibility(View.VISIBLE);
-                    try {
-                        //the response JSON Object
-                        //and converts them into javascript objects
-                        String text_city = response.getString("city");
-                        String text_country = response.getString("country");
-                        String text_temperature = response.getString("temperature");
-                        String text_description = response.getString("description");
+                // Recyclerview is visible after getting all the data.
+                recyclerView.setVisibility(View.VISIBLE);
+                try {
+                    //the response JSON Object
+                    //and converts them into javascript objects
+                    String text_city = response.getString("city");
+                    String text_country = response.getString("country");
+                    String text_temperature = response.getString("temperature");
+                    String text_description = response.getString("description");
 
-                        city_name = "City name: " + text_city;
-                        country_name = "Country: " + text_country;
-                        temperature_Celsius = "Current temperature: " + text_temperature;
-                        description_detail = "Current description : " + text_description;
+                    city_name = "City name: " + text_city;
+                    country_name = "Country: " + text_country;
+                    temperature_Celsius = "Current temperature: " + text_temperature;
+                    description_detail = "Current description : " + text_description;
 
 
-                        data.add(new RecyclerViewData(city_name, country_name, temperature_Celsius, description_detail));
-                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(data);
-                        recyclerView.setAdapter(adapter);
+                    data.add(new RecyclerViewData(city_name, country_name, temperature_Celsius, description_detail));
+                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(data);
+                    recyclerView.setAdapter(adapter);
 
-                        // To set RecyclerView's layout
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-                        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        recyclerView.setLayoutManager(linearLayoutManager);
+                    // To set RecyclerView's layout
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    recyclerView.setLayoutManager(linearLayoutManager);
 
-                        //To put Divider between each API data
-                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                                linearLayoutManager.getOrientation());
-                        recyclerView.addItemDecoration(dividerItemDecoration);
-                    }
-                    // Try and catch are included to handle any errors due to JSON
-                    catch (JSONException e) {
-                        // If an error occurs, this prints the error to the log and as toast msg
-                        e.printStackTrace();
-                    }
+                    //To put Divider between each API data
+                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                            linearLayoutManager.getOrientation());
+                    recyclerView.addItemDecoration(dividerItemDecoration);
+                }
+                // Try and catch are included to handle any errors due to JSON
+                catch (JSONException e) {
+                    // If an error occurs, this prints the error to the log and as toast msg
+                    e.printStackTrace();
                 }
             }, new Response.ErrorListener() {
                 /**
                  * Callback method that an error has been occurred with the provided error code and optional
                  * user-readable message.
                  *
-                 * @param error
                  */
                 @Override
                 public void onErrorResponse(VolleyError error) {

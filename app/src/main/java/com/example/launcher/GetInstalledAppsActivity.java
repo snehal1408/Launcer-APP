@@ -25,20 +25,16 @@ import java.util.List;
 public class GetInstalledAppsActivity extends AppCompatActivity {
 
     private List<AppList> installedApps;
-    private AppAdapter installedAppAdapter;
-    private ListView applist;
-    private String appName, packages;
-    private Drawable icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_apps);
 
-        applist = findViewById(R.id.installed_app_list);
+        ListView applist = findViewById(R.id.installed_app_list);
 
         installedApps = getInstalledApps();
-        installedAppAdapter = new AppAdapter(GetInstalledAppsActivity.this, installedApps);
+        AppAdapter installedAppAdapter = new AppAdapter(GetInstalledAppsActivity.this, installedApps);
         applist.setAdapter(installedAppAdapter);
         applist.setOnItemClickListener((adapterView, view, appPosition, l) -> {
             String[] dialog = {" Open App", " App Info"};
@@ -63,9 +59,9 @@ public class GetInstalledAppsActivity extends AppCompatActivity {
 
         for (int i = 0; i < packs.size(); i++) {
             PackageInfo p = packs.get(i);
-            appName = p.applicationInfo.loadLabel(getPackageManager()).toString();
-            icon = p.applicationInfo.loadIcon(getPackageManager());
-            packages = p.applicationInfo.packageName;
+            String appName = p.applicationInfo.loadLabel(getPackageManager()).toString();
+            Drawable icon = p.applicationInfo.loadIcon(getPackageManager());
+            String packages = p.applicationInfo.packageName;
             apps.add(new AppList(appName, icon, packages));
         }
         return apps;

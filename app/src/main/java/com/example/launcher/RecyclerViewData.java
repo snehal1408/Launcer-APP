@@ -6,6 +6,7 @@ public class RecyclerViewData {
     String country_name;
     String temperature_celsius;
     String description_detail;
+
     public RecyclerViewData(String city_name, String country_name,
                             String temperature_celsius, String description_detail) {
         this.city_name = city_name;
