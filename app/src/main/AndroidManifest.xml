@@ -22,10 +22,10 @@
         </activity>
         <activity
             android:name=".GetInstalledAppsActivity"
-            android:label="@string/installed_apps"></activity>
+            android:label="@string/installed_apps" />
         <activity
             android:name=".APIDataActivity"
-            android:label="@string/api_data"></activity>
+            android:label="@string/api_data" />
 
         <receiver
             android:name=".BatteryReceiver"
