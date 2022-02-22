@@ -23,18 +23,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class APIData extends AppCompatActivity {
-
-    RecyclerView recyclerView;
-    ArrayList<RecyclerViewData> data = new ArrayList<>();
-    ProgressBar loadingPB;
-    String city_name, country_name, temperature_Celsius, description_detail;
-    String url;
+public class APIDataActivity extends AppCompatActivity {
 
     // Array of URLs of APIs to be parsed
     String[] links = new String[]{"http://weather.bfsah.com/beijing", "http://weather.bfsah.com/berlin",
             "http://weather.bfsah.com/cardiff", "http://weather.bfsah.com/edinburgh",
             "http://weather.bfsah.com/london", "http://weather.bfsah.com/nottingham"};
+    private RecyclerView recyclerView;
+    private ArrayList<RecyclerViewData> data = new ArrayList<>();
+    private ProgressBar loadingPB;
+    private String city_name, country_name, temperature_Celsius, description_detail;
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class APIData extends AppCompatActivity {
         // set up the progress bar
         loadingPB = findViewById(R.id.idLoadingPB);
         // creating a new variable for our request queue
-        RequestQueue queue = Volley.newRequestQueue(APIData.this);
+        RequestQueue queue = Volley.newRequestQueue(APIDataActivity.this);
 
         // as our data is in json object format so we are using
         // json object request to make data request from our url.
@@ -56,7 +55,7 @@ public class APIData extends AppCompatActivity {
         // calling our data,"null" as we are not passing any data.
         // later on we are calling response listener method
         // to get the response from all APIs.
-        for ( int i = 0; i < links.length; i++) {
+        for (int i = 0; i < links.length; i++) {
             url = links[i];
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                 @Override
@@ -85,7 +84,7 @@ public class APIData extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
 
                         // To set RecyclerView's layout
-                        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getApplicationContext());
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                         recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -110,14 +109,13 @@ public class APIData extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     // below line is use to display a toast message along with our error.
-                    Toast.makeText(APIData.this, "Fail to get data from " + url , Toast.LENGTH_LONG).show();
+                    Toast.makeText(APIDataActivity.this, "Fail to get data from " + url, Toast.LENGTH_LONG).show();
                 }
             });
             // at last we are adding our json
             // object request to our request
             // queue to fetch all the json data.
             queue.add(jsonObjectRequest);
-
         }
     }
 }

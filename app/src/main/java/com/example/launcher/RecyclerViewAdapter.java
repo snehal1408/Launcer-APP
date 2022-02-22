@@ -14,7 +14,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     ArrayList<RecyclerViewData> data = new ArrayList<>();
 
     public RecyclerViewAdapter(ArrayList<RecyclerViewData> data) {
-        this.data = data;
+        this.data.clear();
+        this.data.addAll(data);
     }
 
     @NonNull
@@ -38,6 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_city, tv_country, tv_temperature, tv_description;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_city = itemView.findViewById(R.id.city);

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeScreen">
+    tools:context=".HomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,44 +18,46 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <DigitalClock
                     android:id="@+id/digital_clock"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#ff0000"
                     android:textSize="40sp"
-                    android:textStyle="bold"
-                    android:textColor="#ff0000"/>
+                    android:textStyle="bold" />
+
                 <AnalogClock
                     android:id="@+id/analog_clock"
-                    android:layout_below="@+id/digital_clock"
-                    android:layout_centerHorizontal="true"
                     android:layout_width="230sp"
                     android:layout_height="230sp"
-                    android:dial="@drawable/clock_dial"/>
+                    android:layout_below="@+id/digital_clock"
+                    android:layout_centerHorizontal="true"
+                    android:dial="@drawable/clock_dial" />
             </RelativeLayout>
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center_horizontal"
-                    android:background="@android:color/white">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/battery_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
                     android:layout_marginTop="2dp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/battery_indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="100sp"/>
+                    android:minWidth="100sp" />
 
                 <TextView
                     android:id="@+id/battery_percentage"
@@ -66,7 +66,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -80,8 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="Launch APP"
-                android:textStyle="bold"
-                android:textSize="15sp"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
 
